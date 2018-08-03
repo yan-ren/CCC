@@ -24,7 +24,7 @@ public class J07J5 {
 			ways++;
 		} else {
 			for (int i = 0; i < motels.size(); i++) {
-				if (motels.get(i) - distance < B && motels.get(i) - distance > A) {
+				if (motels.get(i) - distance <= B && motels.get(i) - distance >= A) {
 					findPath(motels.get(i));
 				}
 			}
