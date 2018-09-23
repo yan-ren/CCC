@@ -1,6 +1,6 @@
 package junior2008;
 
-public class GPSTextEntry {
+public class J08J4 {
 
 	public static void main(String[] args) {
 		ExpressionTree e = new ExpressionTree();

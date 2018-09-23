@@ -34,36 +34,39 @@ public class J06J4 {
 		constraints.add(new Constraint(6, 2));
 		constraints.add(new Constraint(5, 4));
 
-		ArrayList<Status> ready = new ArrayList<>();
-		ready.add(new Status(1, true));
-		ready.add(new Status(2, true));
-		ready.add(new Status(3, true));
-		ready.add(new Status(4, true));
-		ready.add(new Status(5, true));
-		ready.add(new Status(6, true));
-		ready.add(new Status(7, true));
+		ArrayList<Status> readyList = new ArrayList<>();
+		readyList.add(new Status(1, true));
+		readyList.add(new Status(2, true));
+		readyList.add(new Status(3, true));
+		readyList.add(new Status(4, true));
+		readyList.add(new Status(5, true));
+		readyList.add(new Status(6, true));
+		readyList.add(new Status(7, true));
 		ArrayList<Integer> done = new ArrayList<>();
+
 		while (true) {
 			// reset status
-			for (Status s : ready) {
+			for (Status s : readyList) {
 				s.ready = true;
 			}
-			// go through constraints set status false
+			// go through constraints set status
 			for (Constraint c : constraints) {
-				for (Status s : ready) {
+				for (Status s : readyList) {
 					if (c.y == s.x) {
 						s.ready = false;
 					}
 				}
 			}
 
-			// exit condition
+			// exit
 			boolean available = false;
-			if (ready.size() == 0) {
+			// when ready is empty, finish with done list
+			if (readyList.size() == 0) {
 				System.out.println(done);
 				break;
 			}
-			for (Status s : ready) {
+			// if ready list is not empty and nothing is ready, return cannot do
+			for (Status s : readyList) {
 				if (s.ready == true) {
 					available = true;
 				}
@@ -74,17 +77,18 @@ public class J06J4 {
 			}
 			//
 
-			for (int i = 0; i < ready.size(); i++) {
-				if (ready.get(i).ready == true) {
-					done.add(ready.get(i).x);
+			for (int i = 0; i < readyList.size(); i++) {
+				if (readyList.get(i).ready == true) {
+					done.add(readyList.get(i).x);
 					// remove from constraint
 					for (int j = 0; j < constraints.size(); j++) {
-						if (constraints.get(j).x == ready.get(i).x) {
+						if (constraints.get(j).x == readyList.get(i).x) {
 							constraints.remove(j);
 							j--;
 						}
 					}
-					ready.remove(i);
+					// remove from ready list
+					readyList.remove(i);
 					break;
 				}
 			}
