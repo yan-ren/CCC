@@ -42,6 +42,7 @@ public class J06J4 {
 		readyList.add(new Status(5, true));
 		readyList.add(new Status(6, true));
 		readyList.add(new Status(7, true));
+		
 		ArrayList<Integer> done = new ArrayList<>();
 
 		while (true) {

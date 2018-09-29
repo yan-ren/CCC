@@ -77,7 +77,6 @@ public class J08J5 {
 			return true;
 		else
 			return false;
-
 	}
 
 }
