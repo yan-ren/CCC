@@ -3,8 +3,8 @@ language: java
 jdk:
 - oraclejdk11
 
-# see https://blog.travis-ci.com/2014-12-17-faster-builds-with-container-based-infrastructure
-sudo: false
+before_install:
+  - cd java
 
 # cache the build tool's caches
 cache:
