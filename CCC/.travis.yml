@@ -1,0 +1,13 @@
+language: java
+# use Java 8
+jdk:
+- oraclejdk11
+
+before_install:
+  - cd java
+
+# cache the build tool's caches
+cache:
+  directories:
+  - $HOME/.m2
+  - $HOME/.gradle
