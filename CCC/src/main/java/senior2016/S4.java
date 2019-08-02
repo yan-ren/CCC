@@ -6,7 +6,19 @@ import java.util.Collections;
 public class S4 {
 
 	public static void main(String[] args) {
+		int[] a = { 47, 12, 12, 3, 9, 9, 3 };
+		RiceRoll r = new RiceRoll(a);
+		int i = 0;
+		int j = r.size();
 
+	}
+
+//	public int makeRiceBall(RiceRoll r, int i, int j) {
+//		return max(makeRiceBall(r, i+1, j), makeRiceBall(i + 1, ))
+//	}
+
+	public int max(int x, int y, int z) {
+		return Math.max(Math.max(x, y), z);
 	}
 
 }
@@ -18,14 +30,18 @@ class RiceRoll {
 	public RiceRoll() {
 		roll = new ArrayList<>();
 	}
-	
+
 	public RiceRoll(int[] a) {
 		roll = new ArrayList<>();
-		for(int element: a) {
+		for (int element : a) {
 			roll.add(element);
 		}
 	}
-	
+
+	public int size() {
+		return roll.size();
+	}
+
 	public void addRiceBall(int a) {
 		roll.add(a);
 	}
