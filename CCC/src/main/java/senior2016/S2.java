@@ -12,17 +12,20 @@ public class S2 {
 		int citizen = Integer.parseInt(br1.readLine());
 		int[] dmo = Stream.of(br1.readLine().trim().split(" ")).mapToInt(Integer::parseInt).toArray();
 		int[] peg = Stream.of(br1.readLine().trim().split(" ")).mapToInt(Integer::parseInt).toArray();
-		if (question == 1) {
-			return q1(dmo, peg);
-		} else if (question == 2) {
-			return q2(dmo, peg);
-		}
-		return -1;
-	}
 
-	private int q1(int[] dmo, int[] peg) {
 		Arrays.sort(dmo);
 		Arrays.sort(peg);
+
+		if (question == 2) {
+			int[] reversedDmo = IntStream.range(0, dmo.length).map(i -> dmo[dmo.length - i - 1]).toArray();
+			return sum(reversedDmo, peg); 
+		}
+		
+		return sum(dmo, peg);
+	}
+
+	private int sum(int[] dmo, int[] peg) {
+		
 		int sum = 0;
 		for (int i = 0; i < dmo.length; i++) {
 			sum += Math.max(dmo[i], peg[i]);
@@ -30,15 +33,4 @@ public class S2 {
 		return sum;
 	}
 
-	private int q2(int[] dmo, int[] peg) {
-		Arrays.sort(dmo);
-		Arrays.sort(peg);
-		int[] reversedDmo = IntStream.range(0, dmo.length).map(i -> dmo[dmo.length-i-1])
-                .toArray();
-		int sum = 0;
-		for (int i = 0; i < dmo.length; i++) {
-			sum += Math.max(reversedDmo[i], peg[i]);
-		}
-		return sum;
-	}
 }
