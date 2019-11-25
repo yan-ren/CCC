@@ -3,15 +3,17 @@ package senior2016;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class S2 {
-	public int pair(BufferedReader br1) throws NumberFormatException, IOException {
-		int question = Integer.parseInt(br1.readLine());
-		int citizen = Integer.parseInt(br1.readLine());
-		int[] dmo = Stream.of(br1.readLine().trim().split(" ")).mapToInt(Integer::parseInt).toArray();
-		int[] peg = Stream.of(br1.readLine().trim().split(" ")).mapToInt(Integer::parseInt).toArray();
+	public int pair(BufferedReader br) throws NumberFormatException, IOException {
+		Scanner sc = new Scanner(br);
+		int question = Integer.parseInt(sc.nextLine());
+		int citizen = Integer.parseInt(sc.nextLine());
+		int[] dmo = Stream.of(sc.nextLine().trim().split(" ")).mapToInt(Integer::parseInt).toArray();
+		int[] peg = Stream.of(sc.nextLine().trim().split(" ")).mapToInt(Integer::parseInt).toArray();
 
 		Arrays.sort(dmo);
 		Arrays.sort(peg);
