@@ -169,7 +169,7 @@ public class S4Test {
 		String expected = br2.readLine();
 		assertEquals(Integer.parseInt(expected), new S4().run(br1));
 	}
-	/*
+	
 	@Test
 	public void test21() throws IOException {
 		BufferedReader br1 = new InputReader("./src/test/resources/s16s4/s4.21.in").getBr();
@@ -361,5 +361,5 @@ public class S4Test {
 		String expected = br2.readLine();
 		assertEquals(Integer.parseInt(expected), new S4().run(br1));
 	}
-	*/
+	
 }

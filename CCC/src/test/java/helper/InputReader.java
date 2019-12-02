@@ -11,7 +11,7 @@ public class InputReader {
 
 	public InputReader(String filePath) {
 		File file = new File(filePath);
-		System.out.println(file.getAbsolutePath());
+//		System.out.println(file.getAbsolutePath());
 		try {
 			br = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException e) {
