@@ -1,10 +1,33 @@
 package junior2005;
 
+import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class J05J5 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println(isMonkeyWord("BANANA"));
+	}
+	
+	public ArrayList<String> run(BufferedReader br) {
+		Scanner sc = new Scanner(br);
+		ArrayList<String> result = new ArrayList<>();
+		while(sc.hasNext()) {
+			String newLine = sc.nextLine();
+			if (newLine.equals("X")) {
+				break;
+			}
+			
+			if(isMonkeyWord(newLine.trim())) {				
+				result.add("YES");
+			}
+			else {
+				result.add("NO");
+			}
+		}
+		return result;
 	}
 	
 	public static boolean isMonkeyWord(String word) {
