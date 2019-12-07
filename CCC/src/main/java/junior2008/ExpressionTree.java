@@ -17,6 +17,7 @@ class Node {
 public class ExpressionTree {
 
 	Queue<Character> charQueue;
+	String result = "";
 
 	public static boolean isOperator(char c) {
 		if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^') {
@@ -37,8 +38,15 @@ public class ExpressionTree {
 		if (node != null) {
 			postOrder(node.left);
 			postOrder(node.right);
-			System.out.print(node.value + " ");
+//			System.out.print(node.value + " ");
+			result = result + node.value + " ";
 		}
+	}
+	
+	public String getPostOrder(Node node) {
+		result = "";
+		postOrder(node);
+		return result;
 	}
 
 	// build an expression tree and return the root node of the tree

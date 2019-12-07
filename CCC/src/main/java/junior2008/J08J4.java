@@ -10,5 +10,13 @@ public class J08J4 {
 		System.out.println();
 		e.postOrder(root);
 	}
+	
+	public String run(String prefix) {
+		ExpressionTree e = new ExpressionTree();
+		Node root = e.buildExpTreePrefix(prefix.replace(" ", "").toCharArray());
+//		e.inorder(root);
+//		System.out.println();
+		return e.getPostOrder(root).trim();
+	}
 
 }
