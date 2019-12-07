@@ -1,6 +1,9 @@
 package junior2006;
 
+import java.io.BufferedReader;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
 class Constraint {
 	int x;
@@ -25,14 +28,17 @@ class Status {
 public class J06J4 {
 
 	public static void main(String[] args) {
+
+	}
+
+	public String run(BufferedReader br) {
+		Scanner sc = new Scanner(br);
 		ArrayList<Constraint> constraints = new ArrayList<>();
 		constraints.add(new Constraint(1, 7));
 		constraints.add(new Constraint(1, 4));
 		constraints.add(new Constraint(2, 1));
 		constraints.add(new Constraint(3, 4));
 		constraints.add(new Constraint(3, 5));
-		constraints.add(new Constraint(6, 2));
-		constraints.add(new Constraint(5, 4));
 
 		ArrayList<Status> readyList = new ArrayList<>();
 		readyList.add(new Status(1, true));
@@ -42,7 +48,18 @@ public class J06J4 {
 		readyList.add(new Status(5, true));
 		readyList.add(new Status(6, true));
 		readyList.add(new Status(7, true));
-		
+
+		while (sc.hasNext()) {
+			int a = sc.nextInt();
+			int b = sc.nextInt();
+			if (a != 0 && b != 0) {
+				constraints.add(new Constraint(a, b));
+			}
+		}
+		return makeOrder(constraints, readyList);
+	}
+
+	public static String makeOrder(ArrayList<Constraint> constraints, ArrayList<Status> readyList) {
 		ArrayList<Integer> done = new ArrayList<>();
 
 		while (true) {
@@ -63,8 +80,8 @@ public class J06J4 {
 			boolean available = false;
 			// when ready is empty, finish with done list
 			if (readyList.size() == 0) {
-				System.out.println(done);
-				break;
+//				System.out.println(done);
+				return done.stream().map(String::valueOf).collect(Collectors.joining(" "));
 			}
 			// if ready list is not empty and nothing is ready, return cannot do
 			for (Status s : readyList) {
@@ -73,8 +90,8 @@ public class J06J4 {
 				}
 			}
 			if (available == false) {
-				System.out.println("Cannot do");
-				break;
+//				System.out.println("Cannot complete these tasks. Going to bed.");
+				return "Cannot complete these tasks.  Going to bed.";
 			}
 			//
 
@@ -95,7 +112,6 @@ public class J06J4 {
 			}
 
 		}
-
 	}
 
 }
