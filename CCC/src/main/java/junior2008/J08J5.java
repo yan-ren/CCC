@@ -1,5 +1,8 @@
 package junior2008;
 
+import java.io.BufferedReader;
+import java.util.Scanner;
+
 public class J08J5 {
 	static char[] used;
 
@@ -14,7 +17,14 @@ public class J08J5 {
 			System.out.println("Patrick");
 		else
 			System.out.println("Roland");
-
+	}
+	
+	public String run(int[] input) {
+		if(input.length != 4) {
+			return null;
+		}
+		
+		return patrickWins(input[0], input[1], input[2], input[3])? "Patrick": "Roland";
 	}
 
 	public static boolean canDoAABDD(int a, int b, int c, int d) {
