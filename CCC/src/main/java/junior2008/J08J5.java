@@ -1,8 +1,5 @@
 package junior2008;
 
-import java.io.BufferedReader;
-import java.util.Scanner;
-
 public class J08J5 {
 	static char[] used;
 
