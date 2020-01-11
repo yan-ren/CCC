@@ -14,51 +14,49 @@ public class J12J5 {
 	 * 
 	 * Idea: BFS
 	 */
-
-	public static int positionNumber;
-	
 	public static void main(String[] args) {
-		positionNumber = 3;
+		int positionNumber = 3;
 		String test1 = "3,2,1";
 		// 3,12,0
-		System.out.println(makeMove(test1, 2, 1));
+		System.out.println(makeMove(test1, 2, 1, positionNumber));
 		String test2 = "3,2,1";
 		// 3,12,0
-		System.out.println(makeMove(test2, 2, 0));
+		System.out.println(makeMove(test2, 2, 0, positionNumber));
 		String test3 = "3,2,1";
 		// 3,12,0
-		System.out.println(makeMove(test3, 0, 1));
+		System.out.println(makeMove(test3, 0, 1, positionNumber));
 		String test4 = "23,1,0";
 		// 3,12,0
-		System.out.println(makeMove(test4, 1, 1));
+		System.out.println(makeMove(test4, 1, 1, positionNumber));
 	}
 
 	public ArrayList<String> run(BufferedReader br) {
 		Scanner sc = new Scanner(br);
 		ArrayList<String> result = new ArrayList<>();
 		while (sc.hasNext()) {
-			positionNumber = Integer.parseInt(sc.nextLine());
-			if (positionNumber == 0) {
+			int digits = Integer.parseInt(sc.nextLine());
+			if (digits == 0) {
+				sc.close();
 				return result;
 			}
 			String start = sc.nextLine().replace(" ", ",");
-			String target = buildTarget();
-//			System.out.println(target);
-			result.add(bfs(start, target));
+			String target = buildTarget(digits);
+			result.add(bfs(start, target, digits));
 		}
+		sc.close();
 		return null;
 	}
 	
-	public static String buildTarget() {
+	public static String buildTarget(int digits) {
 		String result = "";
-		for(int i = 1; i <= positionNumber; i++) {
+		for(int i = 1; i <= digits; i++) {
 			result += i + ",";
 		}
 		return result.substring(0, result.length() - 1);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static String bfs(String start, String target) {
+	public static String bfs(String start, String target, int digits) {
 		int moves = 0;
 		Set<String> visitedStep = new HashSet<>();
 		ArrayList<String> currentLevel = new ArrayList<>();
@@ -66,15 +64,14 @@ public class J12J5 {
 		ArrayList<String> nextLevel = new ArrayList<>();
 		while(currentLevel.size() != 0) {
 			for(String node: currentLevel) {
-//				System.out.println(node);
 				if(node.equals(target)) {
 					return Integer.toString(moves);
 				}
 				if(!visitedStep.contains(node)) {
 					visitedStep.add(node);
-					for(int i = 0; i < positionNumber; i++) {
-						String moveLeft = makeMove(node, i, 1);
-						String moveRight = makeMove(node, i, 0);
+					for(int i = 0; i < digits; i++) {
+						String moveLeft = makeMove(node, i, 1, digits);
+						String moveRight = makeMove(node, i, 0, digits);
 						if(moveLeft != null) {
 							nextLevel.add(moveLeft);	
 						}
@@ -94,16 +91,14 @@ public class J12J5 {
 	/*
 	 * 3|2|1 or 3|0|12
 	 */
-	public static String makeMove(String s, int position, int left) {
-		Stack<Integer>[] line = new Stack[positionNumber];
+	public static String makeMove(String s, int position, int left, int digits) {
+		Stack<Integer>[] line = new Stack[digits];
 		for (int i = 0; i < line.length; i++) {
 			line[i] = new Stack<Integer>();
 		}
 		String[] items = s.split(",");
-//		System.out.println(items.length);
-		// build move stack list
+		// build list of stacks for moving
 		for (int i = 0; i < items.length; i++) {
-//			System.out.println(items[i]);
 			for (int j = items[i].length() - 1; j >= 0; j--) {
 				if (Character.getNumericValue(items[i].charAt(j)) != 0) {
 					line[i].push(Character.getNumericValue(items[i].charAt(j)));
@@ -118,7 +113,7 @@ public class J12J5 {
 		if (position == 0 && left == 1) {
 			return null;
 		}
-		if (position == positionNumber - 1 && left == 0) {
+		if (position == digits - 1 && left == 0) {
 			return null;
 		}
 		if (left == 1) {
