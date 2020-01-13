@@ -39,6 +39,7 @@ public class J09J4 {
 			result.add(appendSpace(currentLine, w));
 		}
 
+		sc.close();
 		return result;
 	}
 

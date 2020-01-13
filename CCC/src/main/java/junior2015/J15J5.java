@@ -27,7 +27,7 @@ public class J15J5 {
 
 			}
 		}
-
+		sc.close();
 		return dp[b][u];
 	}
 }

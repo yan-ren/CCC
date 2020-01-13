@@ -17,6 +17,7 @@ public class J2 {
 			n++;
 		}
 		
+		sc.close();
 		return q2(input);
 	}
 	

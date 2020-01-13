@@ -46,6 +46,7 @@ public class J15J4 {
 			result += key + " " + timeTable.get(key);
 		}
 		System.out.println(timeTable);
+		sc.close();
 		return result;
 	}
 }

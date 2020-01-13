@@ -30,6 +30,7 @@ public class J11J4 {
 			}
 			comments.add(comment);
 		}
+		sc.close();
 		return comments;
 	}
 	

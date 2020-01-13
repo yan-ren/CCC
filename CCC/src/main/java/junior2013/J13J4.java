@@ -26,6 +26,7 @@ public class J13J4 {
 			taskList.remove(0);
 			task += 1;
 		}
+		sc.close();
 		return task;
 	}
 }

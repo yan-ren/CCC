@@ -8,6 +8,7 @@ public class J12J4 {
 		Scanner sc = new Scanner(br);
 		int K = Integer.parseInt(sc.nextLine());
 		String encodedMsg = sc.nextLine();
+		sc.close();
 		return decode(encodedMsg, K);
 	}
 

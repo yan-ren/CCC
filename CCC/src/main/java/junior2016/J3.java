@@ -28,12 +28,9 @@ public class J3 {
 		for (int i = 0; i < n; ++i)
 			table[i][i] = true;
 
-		// check for sub-string of length 2.
-		int start = 0;
 		for(int i = 0; i < n - 1; ++i) {
 			if (input.charAt(i) == input.charAt(i + 1)) {
 				table[i][i + 1] = true;
-				start = i;
 				maxLength = 2;
 			}
 		}
@@ -55,7 +52,6 @@ public class J3 {
 					table[i][j] = true;
 
 					if (k > maxLength) {
-						start = i;
 						maxLength = k;
 					}
 				}

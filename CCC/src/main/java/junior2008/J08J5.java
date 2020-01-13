@@ -4,7 +4,7 @@ public class J08J5 {
 	static char[] used;
 
 	public static void main(String[] args) {
-		int a, b, c, d, n;
+		int a, b, c, d;
 		a = 8;
 		b = 8;
 		c = 6;

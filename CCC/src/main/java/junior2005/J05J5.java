@@ -26,6 +26,7 @@ public class J05J5 {
 				result.add("NO");
 			}
 		}
+		sc.close();
 		return result;
 	}
 

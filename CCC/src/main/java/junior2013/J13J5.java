@@ -36,6 +36,7 @@ public class J13J5 {
 				winningTimes += 1;
 			}
 		}
+		sc.close();
 		return winningTimes;
 	}
 

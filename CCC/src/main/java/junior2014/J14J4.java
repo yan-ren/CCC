@@ -26,6 +26,7 @@ public class J14J4 {
 		}
 		// remove the leading 0
 		peopleList.remove(0);
+		sc.close();
 		return peopleList;
 	}
 }

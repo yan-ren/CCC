@@ -38,6 +38,7 @@ public class J06J5 {
 		}
 		int black = count(board, 1);
 		int white = count(board, 2);
+		sc.close();
 		return black + " " + white;
 	}
 

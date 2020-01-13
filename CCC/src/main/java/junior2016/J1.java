@@ -17,6 +17,7 @@ public class J1 {
 			}
 			counter--;
 		}
+		sc.close();
 		if(win >= 5){
 			return 1;
 		}

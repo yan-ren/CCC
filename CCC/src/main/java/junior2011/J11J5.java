@@ -32,7 +32,8 @@ public class J11J5 {
 		}
 		// root node
 		Node mark = buildChild(personNum, personMap);
-		// Mark will never remove himself, so -1 
+		sc.close();
+		// Mark will never remove himself, so -1
 		return count(mark) - 1;
 	}
 	

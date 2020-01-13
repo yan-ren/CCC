@@ -26,6 +26,7 @@ public class J14J5 {
 				return "bad";
 			}
 		}
+		sc.close();
 		return "good";
 	}
 }

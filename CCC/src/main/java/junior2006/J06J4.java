@@ -56,6 +56,7 @@ public class J06J4 {
 				constraints.add(new Constraint(a, b));
 			}
 		}
+		sc.close();
 		return makeOrder(constraints, readyList);
 	}
 

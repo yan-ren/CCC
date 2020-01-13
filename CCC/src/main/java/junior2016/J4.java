@@ -22,7 +22,9 @@ public class J4 {
 	
 	public String compute(BufferedReader br) {
 		Scanner sc = new Scanner(br);
-		return arrive(sc.nextLine().trim());
+		String input = sc.nextLine().trim();
+		sc.close();
+		return arrive(input);
 	}
 
 	public static String arrive(String start) {
