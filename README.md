@@ -1,6 +1,6 @@
 # CCC
-[![Build Status](https://travis-ci.org/yan-ren/CCC.svg?branch=master)](https://travis-ci.org/yan-ren/CCC)
-[![codecov](https://codecov.io/gh/yan-ren/CCC/branch/master/graph/badge.svg)](https://codecov.io/gh/yan-ren/CCC)
+[![Build Status](https://travis-ci.org/yan-ren/CCC.svg?branch=master)](https://travis-ci.org/yan-ren/CCC) [![codecov](https://codecov.io/gh/yan-ren/CCC/branch/master/graph/badge.svg)](https://codecov.io/gh/yan-ren/CCC)
+
 ![CCC logo](logo.jpeg)
 
 This repository contains the unofficial solutions to the [Canadian Computing Competition](https://cemc.math.uwaterloo.ca/contests/computing.html). Solutions are inspired by various sources, including personal solutions, online resources, and [Milliken Mills CCC repository](http://mmhs.ca/ccc/index.htm).
@@ -28,4 +28,4 @@ My solution deviates from the [CCC Java code standard](https://cemc.uwaterloo.ca
 ## Support  
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=PNBG2C3WK35YW&currency_code=CAD&source=url)
 
-Thank you for all your support, I will keep making quality solutions.
+Thank you for all your support! I will keep posting quality solutions.
