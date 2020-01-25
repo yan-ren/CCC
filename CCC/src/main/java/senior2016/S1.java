@@ -1,5 +1,8 @@
 package senior2016;
 
+import java.io.BufferedReader;
+import java.util.Scanner;
+
 public class S1 {
 	
 	public static void main(String args[]){
@@ -9,8 +12,20 @@ public class S1 {
 			System.out.println("NOT ANAGRAMS");
 			System.exit(0);
 		}
-		String result = (compare(calculateCharacters(a), calculateCharacters(b)) == true) ? "ANAGRAMS": "NOT ANAGRAMS";
+		String result = (compare(calculateCharacters(a), calculateCharacters(b)) == true) ? "A": "N";
 		System.out.println(result);
+	}
+	
+	public String run(BufferedReader br) {
+		Scanner sc = new Scanner(br);
+		String a = sc.nextLine();
+		String b = sc.nextLine();
+		sc.close();
+		if(a.length() != b.length()){
+			return "N";
+		}
+		String result = (compare(calculateCharacters(a), calculateCharacters(b)) == true) ? "A": "N";
+		return result;
 	}
 
 	public static boolean compare(int[] a, int[] b){
