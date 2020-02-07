@@ -10,13 +10,14 @@ public class J17J4 {
 	/*
 	 * 12 * 60 = 720
 	 * when duration > 720
-	 * times = times happended in 720 * duration / 720 + duration - duration / 720 * 720
+	 * times = times happened in 720 * duration / 720 + duration - duration / 720 * 720
 	 */
 	public int run(BufferedReader br) {
 		Scanner sc = new Scanner(br);
 		int duration = sc.nextInt();
 		int cycle = duration / 720;
 		int result;
+		sc.close();
 		
 		if (cycle > 0) {
 			result = count(720) * cycle + count(duration - duration / 720 * 720);
