@@ -28,4 +28,4 @@ My solution deviates from the [CCC Java code standard](https://cemc.uwaterloo.ca
 ## Support  
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=PNBG2C3WK35YW&currency_code=CAD&source=url)
 
-Thank you for all your support! I will keep posting quality solutions.
+Thank you for all your support! I will keep posting high quality solutions.
