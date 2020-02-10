@@ -2,17 +2,13 @@ package junior2019;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
 public class J19J5 {
 
 	public static ArrayList<Rule> rules;
 
-	public String run(BufferedReader br) {
+	public ArrayList<String> run(BufferedReader br) {
 		Scanner sc = new Scanner(br);
 		initRules(sc);
 		String[] items = sc.nextLine().split(" ");
@@ -24,7 +20,8 @@ public class J19J5 {
 		return transform(steps, begin, end);
 	}
 
-	public static String transform(int steps, String begin, String end) {
+	@SuppressWarnings("unchecked")
+	public static ArrayList<String> transform(int steps, String begin, String end) {
 //		Set<String> seen = new HashSet<>();
 //		seen.add(begin);
 		Node first = new Node(begin, "");
@@ -34,41 +31,48 @@ public class J19J5 {
 		int currentStep = 0;
 		while (currentStep < steps) {
 			// go through each node in current list, apply each rule
-			System.out.println("generation" + currentStep);
-			System.out.println(current);
-			for(Node n : current) {
+//			System.out.println("generation" + currentStep);
+//			System.out.println(current);
+			for (Node n : current) {
 				// apply each rule
-				for(int i = 0; i < rules.size(); i ++) {
+				for (int i = 0; i < rules.size(); i++) {
 					// apply this key in all index in current node
 					int startIndex = 0;
 					boolean done = false;
-					while(!done) {
+					while (!done) {
 						int find = n.value.indexOf(rules.get(i).key, startIndex);
-						if(find != -1) {
+						if (find != -1) {
 							startIndex = find + 1;
-							String tmp = n.value.substring(0, find) + rules.get(i).value + n.value.substring(find + rules.get(i).key.length());
-//							if(!seen.contains(tmp)) {
-								// not seen this type, add to next
-								next.add(new Node(tmp, n.history + "\n" + (i+1)  + " " + (find + 1) + " " + tmp));
-//								seen.add(tmp);
-//							}
-						}else {
+							String tmp = n.value.substring(0, find) + rules.get(i).value
+									+ n.value.substring(find + rules.get(i).key.length());
+							// if have seen this in history, skip this case
+							if(n.history.contains(" " + tmp + "\n")) {
+								continue;
+							}
+							if (n.history.equals("")) {
+								next.add(new Node(tmp, (i + 1) + " " + (find + 1) + " " + tmp));
+							} else {
+								next.add(new Node(tmp, n.history + "\n" + (i + 1) + " " + (find + 1) + " " + tmp));
+							}
+						} else {
 							done = true;
 						}
 					}
-					
+
 				}
 			}
-			current = new ArrayList<Node>(next);
+			current = (ArrayList<Node>) next.clone();
 			next.clear();
 			currentStep += 1;
 		}
-		for(Node n : current) {
-			if(n.value.equals(end)) {
-				return n.history;
+
+		ArrayList<String> result = new ArrayList<>();
+		for (Node n : current) {
+			if (n.value.equals(end)) {
+				result.add(n.history);
 			}
 		}
-		return null;
+		return result;
 	}
 
 	// cannot use map for rules because may have same key
@@ -84,15 +88,16 @@ public class J19J5 {
 	}
 }
 
-class Rule{
+class Rule {
 	String key;
 	String value;
-	
+
 	public Rule(String key, String value) {
 		this.key = key;
 		this.value = value;
 	}
 }
+
 class Node {
 	String value;
 	String history;
@@ -101,7 +106,7 @@ class Node {
 		this.value = value;
 		this.history = history;
 	}
-	
+
 	public String toString() {
 		return "[value: " + value + ", history: " + history + "]";
 	}
