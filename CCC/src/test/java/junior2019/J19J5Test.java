@@ -36,6 +36,7 @@ public class J19J5Test {
 		sc.close();
 		assertEquals(new J19J5().run(br1).contains(expected), true);
 	}
+
 	/*
 	@Test
 	public void test3() throws IOException {
@@ -77,7 +78,6 @@ public class J19J5Test {
 	}
 	*/
 
-	
 	@Test
 	public void test6() throws IOException {
 		BufferedReader br1 = new InputReader("./src/test/resources/j19/j5/j5.06.in").getBr();
