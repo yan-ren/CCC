@@ -2,6 +2,7 @@ package senior2017;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /*
@@ -37,15 +38,51 @@ public class S17S4 {
 			i++;
 		}
 		// remaining is the unused edge
-		while(sc.hasNext()) {
+		while (sc.hasNext()) {
 			String[] line = sc.nextLine().split(" ");
 			edges.add(new Edge(Integer.parseInt(line[0]), Integer.parseInt(line[1]), Integer.parseInt(line[2]), false));
 		}
-		return 0;
+		Collections.sort(edges);
+//		System.out.println(edges);
+//		System.out.println(N - 1);
+		Edge maxEdgeInPlan = new Edge(0, 0, 0, true);
+		int costDays = 0;
+		int usedEdges = 0; // track how many edges have been used
+		for (int j = 0; j < edges.size(); j++) {
+			// N - 1 is a valid plan, new plan also has N - 1 edges
+			if (usedEdges >= N - 1) {
+				break;
+			}
+			Edge temp = edges.get(j);
+			if (!set.isUnion(temp.x, temp.y)) {
+				set.union(temp.x, temp.y);
+				if (!temp.used) {
+					costDays += 1;
+				}
+				maxEdgeInPlan = temp;
+				usedEdges += 1;
+			}
+		}
+		set.reset();
+		if (!maxEdgeInPlan.used) {
+			for (int j = 0; j < edges.size(); j++) {
+				Edge temp = edges.get(j);
+				if (!set.isUnion(temp.x, temp.y)) {
+					if (temp.weight < maxEdgeInPlan.weight || ((temp.weight == maxEdgeInPlan.weight) && temp.used)) {
+						set.union(temp.x, temp.y);
+					} else if (temp.used && temp.weight <= D) {
+						costDays -= 1;
+						System.out.println("decrese cost day by 1");
+						break;
+					}
+				}
+			}
+		}
+		return costDays;
 	}
 }
 
-class Edge {
+class Edge implements Comparable<Edge> {
 	int x, y;
 	int weight;
 	boolean used;
@@ -55,6 +92,22 @@ class Edge {
 		this.y = y;
 		this.weight = weight;
 		this.used = used;
+	}
+
+	public int compareTo(Edge e) {
+		if (this.weight != e.weight) {
+			return this.weight > e.weight ? 1 : -1;
+		} else if (this.used && !e.used) {
+			return -1;
+		} else if (!this.used && e.used) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+	public String toString() {
+		return x + " <-> " + y + ", weight: " + weight + ", used:" + used;
 	}
 }
 
@@ -118,6 +171,27 @@ class DisjointSets {
 			// Find out who the root is; compress path by making the root x's parent.
 			array[x] = find(array[x]);
 			return array[x]; // Return the root
+		}
+	}
+
+	/**
+	 * isUnion() check if two values are in the same set
+	 * 
+	 * @param x
+	 * @param y
+	 * @return boolean
+	 **/
+	public boolean isUnion(int x, int y) {
+		return find(x) == find(y);
+	}
+
+	/**
+	 * 
+	 * 
+	 **/
+	public void reset() {
+		for (int i = 0; i < array.length; i++) {
+			array[i] = -1;
 		}
 	}
 }
