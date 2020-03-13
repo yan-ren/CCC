@@ -28,6 +28,7 @@ public class S17S4 {
 		int N = Integer.parseInt(firstLine[0]);
 		int M = Integer.parseInt(firstLine[1]);
 		int D = Integer.parseInt(firstLine[2]);
+//		System.out.println("N " + N + ", M " + M + ", D " + D);
 		DisjointSets set = new DisjointSets(N + 1);
 		int i = 0;
 		ArrayList<Edge> edges = new ArrayList<>();
@@ -37,20 +38,21 @@ public class S17S4 {
 			edges.add(new Edge(Integer.parseInt(line[0]), Integer.parseInt(line[1]), Integer.parseInt(line[2]), true));
 			i++;
 		}
+//		System.out.println(edges.size());
 		// remaining is the unused edge
 		while (sc.hasNext()) {
 			String[] line = sc.nextLine().split(" ");
 			edges.add(new Edge(Integer.parseInt(line[0]), Integer.parseInt(line[1]), Integer.parseInt(line[2]), false));
 		}
 		Collections.sort(edges);
+//		System.out.println(edges.size());
 //		System.out.println(edges);
-//		System.out.println(N - 1);
 		Edge maxEdgeInPlan = new Edge(0, 0, 0, true);
 		int costDays = 0;
 		int usedEdges = 0; // track how many edges have been used
 		for (int j = 0; j < edges.size(); j++) {
 			// N - 1 is a valid plan, new plan also has N - 1 edges
-			if (usedEdges >= N - 1) {
+			if (usedEdges == N - 1) {
 				break;
 			}
 			Edge temp = edges.get(j);
@@ -72,7 +74,6 @@ public class S17S4 {
 						set.union(temp.x, temp.y);
 					} else if (temp.used && temp.weight <= D) {
 						costDays -= 1;
-						System.out.println("decrese cost day by 1");
 						break;
 					}
 				}
@@ -138,7 +139,7 @@ class DisjointSets {
 	}
 
 	/**
-	 * union() unites two disjoint sets into a single set. A union-by-rank heuristic
+	 * merge() unites two disjoint sets into a single set. A union-by-rank heuristic
 	 * is used to choose the new root. This method will corrupt the data structure
 	 * if root1 and root2 are not roots of their respective sets, or if they're
 	 * identical.
@@ -146,7 +147,7 @@ class DisjointSets {
 	 * @param root1 the root of the first set.
 	 * @param root2 the root of the other set.
 	 **/
-	public void union(int root1, int root2) {
+	public void merge(int root1, int root2) {
 		if (array[root2] < array[root1]) {
 			array[root1] = root2; // root2 is taller; make root2 new root
 		} else {
@@ -193,5 +194,9 @@ class DisjointSets {
 		for (int i = 0; i < array.length; i++) {
 			array[i] = -1;
 		}
+	}
+	
+	public void union(int x, int y){
+		merge(find(x), find(y));
 	}
 }

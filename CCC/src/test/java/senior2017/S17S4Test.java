@@ -102,7 +102,6 @@ public class S17S4Test {
 		assertEquals(Integer.parseInt(expected), new S17S4().run(br1));
 	}
 
-	// given expected is wrong, change 5 to 4
 	@Test
 	public void test10() throws IOException {
 		BufferedReader br1 = new InputReader("./src/test/resources/s17/s4/s4.10.in").getBr();
