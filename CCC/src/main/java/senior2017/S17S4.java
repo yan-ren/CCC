@@ -38,15 +38,14 @@ public class S17S4 {
 			edges.add(new Edge(Integer.parseInt(line[0]), Integer.parseInt(line[1]), Integer.parseInt(line[2]), true));
 			i++;
 		}
-//		System.out.println(edges.size());
 		// remaining is the unused edge
 		while (sc.hasNext()) {
 			String[] line = sc.nextLine().split(" ");
 			edges.add(new Edge(Integer.parseInt(line[0]), Integer.parseInt(line[1]), Integer.parseInt(line[2]), false));
 		}
+		// sort the edges on weight, if same weight, the edge in the current plan (N-1)
+		// comes first, unused edge later
 		Collections.sort(edges);
-//		System.out.println(edges.size());
-//		System.out.println(edges);
 		Edge maxEdgeInPlan = new Edge(0, 0, 0, true);
 		int costDays = 0;
 		int usedEdges = 0; // track how many edges have been used
@@ -56,8 +55,10 @@ public class S17S4 {
 				break;
 			}
 			Edge temp = edges.get(j);
+			// if this edge connects two set, use this edge
 			if (!set.isUnion(temp.x, temp.y)) {
 				set.union(temp.x, temp.y);
+				// if the edge is not in the initial plan, we need to cost one day to include this edge
 				if (!temp.used) {
 					costDays += 1;
 				}
@@ -66,13 +67,20 @@ public class S17S4 {
 			}
 		}
 		set.reset();
+		// find MST again, consider D. largest weight edge in new MST cannot larger than previous MST
+		// if maxEdgeInPlan is not used, we may reduce one day
+		// we have following cases in previous plan: [small unused edge, small used edge, used maxEdges, unused maxEdge]
+		// we spend days on small unused edge, unused maxEdge
 		if (!maxEdgeInPlan.used) {
 			for (int j = 0; j < edges.size(); j++) {
 				Edge temp = edges.get(j);
 				if (!set.isUnion(temp.x, temp.y)) {
 					if (temp.weight < maxEdgeInPlan.weight || ((temp.weight == maxEdgeInPlan.weight) && temp.used)) {
 						set.union(temp.x, temp.y);
-					} else if (temp.used && temp.weight <= D) {
+					} 
+					// if this edge is in given plan also can be reduced to 0 using D, we can still use this edge with D
+					// don't need to cost extra one day to use another edge
+					else if (temp.used && temp.weight <= D) {
 						costDays -= 1;
 						break;
 					}
@@ -195,8 +203,8 @@ class DisjointSets {
 			array[i] = -1;
 		}
 	}
-	
-	public void union(int x, int y){
+
+	public void union(int x, int y) {
 		merge(find(x), find(y));
 	}
 }
